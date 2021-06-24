@@ -38,7 +38,7 @@ publishing {
             groupId = project.group.toString()
             artifactId = project.name
             version = project.version.toString()
-            artifact(project.buildDir.resolve("frameworks/JavaNativeFoundation.zip")) {
+            artifact(archiveJNF.get().outputs.files.singleFile) {
                 builtBy(archiveJNF)
             }
         }
