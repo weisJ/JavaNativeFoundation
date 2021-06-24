@@ -13,7 +13,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Build JNF
+        run: gradle buildJNF
       - name: Publish package
-        run: gradle buildJNF publish
+        run: gradle publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
