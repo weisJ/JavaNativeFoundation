@@ -13,6 +13,16 @@ val buildJNF by tasks.registering(Exec::class) {
     commandLine("sh", "build_jnf.sh")
 }
 
+val archiveJNF by tasks.registering(Zip::class) {
+    dependsOn(buildJNF)
+    archiveExtension.set("zip")
+    archiveBaseName.set("JavaNativeFoundation")
+    destinationDirectory.set(project.buildDir.resolve("frameworks"))
+    from("buildNative/Frameworks/")
+}
+
+tasks.publish.configure { dependsOn(archiveJNF) }
+
 publishing {
     repositories {
         maven {
@@ -29,7 +39,7 @@ publishing {
             groupId = project.group.toString()
             artifactId = project.name
             version = project.version.toString()
-            artifact("build/Frameworks")
+            artifact(project.buildDir.resolve("frameworks/JavaNativeFoundation.zip"))
         }
     }
 }

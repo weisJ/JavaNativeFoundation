@@ -16,8 +16,8 @@ export SDKROOT=$(xcrun --sdk ${SDK_NAME} --show-sdk-path)
 export PATH=/AppleInternal/Java/bin:$PATH
 
 do_jnf() {
-    mkdir -p build/Frameworks
-    xcodebuild install -project openjdk/apple/JavaNativeFoundation/JavaNativeFoundation.xcodeproj -target JavaNativeFoundation -configuration Release DSTROOT="$(pwd)/build/Frameworks" CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}"
+    mkdir -p buildNative/Frameworks
+    xcodebuild install -project openjdk/apple/JavaNativeFoundation/JavaNativeFoundation.xcodeproj -target JavaNativeFoundation -configuration Release DSTROOT="$(pwd)/buildNative/Frameworks" CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}"
 }
 
 do_jnf

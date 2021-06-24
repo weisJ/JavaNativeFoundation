@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build JNF
-        run: gradle buildJNF
+        run: gradle buildJNF archiveJNF
       - name: Publish package
         run: gradle publish
         env:
