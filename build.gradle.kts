@@ -15,7 +15,7 @@ val buildJNF by tasks.registering(Exec::class) {
 
 val archiveJNF by tasks.registering(Zip::class) {
     dependsOn(buildJNF)
-    archiveExtension.set("zip")
+    archiveExtension.set("jar")
     archiveBaseName.set("JavaNativeFoundation")
     destinationDirectory.set(project.buildDir.resolve("frameworks"))
     from("buildNative/Frameworks/")
