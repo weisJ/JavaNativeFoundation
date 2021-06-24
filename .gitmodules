@@ -1,0 +1,3 @@
+[submodule "openjdk"]
+	path = openjdk
+	url = https://github.com/apple/openjdk.git
