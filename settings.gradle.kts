@@ -5,5 +5,5 @@ pluginManagement {
         idv("com.github.vlsi.gradle-extensions", "com.github.vlsi.vlsi-release-plugins")
     }
 }
-rootProject.name = "JavaNativeFoundation"
+rootProject.name = "javaNativeFoundation"
 

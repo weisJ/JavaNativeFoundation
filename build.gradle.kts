@@ -4,7 +4,7 @@ plugins {
 }
 
 val String.v: String get() = rootProject.extra["$this.version"] as String
-val projectVersion = "JavaNativeFoundation".v
+val projectVersion = project.name.v
 
 group = "com.github.weisj"
 version = projectVersion
@@ -15,7 +15,7 @@ val buildJNF by tasks.registering(Exec::class) {
 
 val archiveJNF by tasks.registering(Jar::class) {
     dependsOn(buildJNF)
-    archiveBaseName.set("JavaNativeFoundation")
+    archiveBaseName.set(project.name)
     destinationDirectory.set(project.buildDir.resolve("frameworks"))
     from("buildNative/Frameworks/")
 }
