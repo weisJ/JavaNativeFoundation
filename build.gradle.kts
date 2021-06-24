@@ -9,20 +9,27 @@ val projectVersion = "JavaNativeFoundation".v
 group = "com.github.weisj"
 version = projectVersion
 
+val buildJNF by tasks.registering(Exec::class) {
+    commandLine("sh", "build_jnf.sh")
+}
+
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+            url = uri("https://maven.pkg.github.com/weisj/JavaNativeFoundation")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
     publications {
-        register("gpr") {
-            //TODO
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            artifact("build/Frameworks")
         }
     }
 }
