@@ -48,8 +48,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/weisj/JavaNativeFoundation")
             credentials {
-                username = project.stringProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.stringProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = project.stringProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.stringProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
