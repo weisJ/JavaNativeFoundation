@@ -1,0 +1,20 @@
+import javax.inject.Inject
+
+class JNFComponent implements Plugin<Project> {
+    private final SoftwareComponentFactory softwareComponentFactory
+
+    @Inject
+    JNFComponent(SoftwareComponentFactory softwareComponentFactory) {
+        this.softwareComponentFactory = softwareComponentFactory
+    }
+
+    void apply(Project project) {
+        def jnf = softwareComponentFactory.adhoc('jnf')
+
+        jnf.addVariantsFromConfiguration(project.configurations.jnfElements) {}
+
+        project.components.add(jnf)
+    }
+}
+
+apply plugin: JNFComponent
