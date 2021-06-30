@@ -23,7 +23,7 @@ val archiveJNF by tasks.registering(Zip::class) {
     from("buildNative/Frameworks/JavaNativeFoundation.framework")
 }
 
-val jnfElements by configurations.registering {
+fun registerJNFConfiguration(architecture : String) = configurations.registering {
     isCanBeResolved = false
     isCanBeConsumed = true
     attributes {
@@ -31,10 +31,13 @@ val jnfElements by configurations.registering {
         attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements::class.java, "framework-bundle"))
         attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category::class.java, Category.LIBRARY))
         attribute(Attribute.of("dev.nokee.operatingSystem", String::class.java), "macos")
-        attribute(Attribute.of("dev.nokee.architecture", String::class.java), "arm64")
+        attribute(Attribute.of("dev.nokee.architecture", String::class.java), architecture)
     }
     outgoing.artifact(archiveJNF)
 }
+
+val jnfElementsArm by registerJNFConfiguration("arm64")
+val jnfElementsX86 by registerJNFConfiguration("x86-64")
 
 apply(from="jnf-component.gradle")
 

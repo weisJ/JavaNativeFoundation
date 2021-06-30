@@ -11,7 +11,8 @@ class JNFComponent implements Plugin<Project> {
     void apply(Project project) {
         def jnf = softwareComponentFactory.adhoc('jnf')
 
-        jnf.addVariantsFromConfiguration(project.configurations.jnfElements) {}
+        jnf.addVariantsFromConfiguration(project.configurations.jnfElementsArm) {}
+        jnf.addVariantsFromConfiguration(project.configurations.jnfElementsX86) {}
 
         project.components.add(jnf)
     }
