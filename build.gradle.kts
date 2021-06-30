@@ -1,9 +1,10 @@
+import com.github.vlsi.gradle.properties.dsl.stringProperty
+import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
+
 plugins {
     id("com.github.vlsi.gradle-extensions")
     id("maven-publish")
 }
-
-import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
 
 val String.v: String get() = rootProject.extra["$this.version"] as String
 val projectVersion = project.name.v
@@ -47,8 +48,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/weisj/JavaNativeFoundation")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.stringProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.stringProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
     }
