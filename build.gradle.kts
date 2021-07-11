@@ -22,6 +22,7 @@ version = projectVersion
 
 releaseParams {
     tlp.set("JavaNativeFoundation")
+    gitRepoName.set(tlp.get())
     organizationName.set("weisj")
     componentName.set("JavaNativeFoundation")
     prefixForProperties.set("gh")
