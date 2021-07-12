@@ -5,14 +5,10 @@ import com.github.vlsi.gradle.publishing.dsl.versionFromResolution
 import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
 
 plugins {
-    id("com.github.vlsi.crlf")
     id("com.github.vlsi.gradle-extensions")
     id("com.github.vlsi.stage-vote-release")
     id("maven-publish")
 }
-
-val enableMavenLocal by props(false)
-val enableGradleMetadata by props()
 
 val String.v: String get() = rootProject.extra["$this.version"] as String
 val projectVersion = project.name.v
@@ -46,8 +42,7 @@ val buildJNF by tasks.registering(Exec::class) {
 
 val archiveJNF by tasks.registering(Zip::class) {
     dependsOn(buildJNF)
-    archiveBaseName.set("JavaNativeFoundation")
-    archiveExtension.set("framework.zip")
+    archiveFileName.set("JavaNativeFoundation.framework.zip")
     destinationDirectory.set(project.buildDir.resolve("frameworks"))
     from("buildNative/Frameworks/JavaNativeFoundation.framework")
 }
