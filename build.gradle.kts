@@ -37,14 +37,12 @@ releaseParams {
 }
 
 val buildJNF by tasks.registering(Exec::class) {
-    commandLine("sh", "build_jnf.sh")
+    commandLine("arch", "-x86_64", "/bin/bash", "build_jnf.sh")
 }
 
-val archiveJNF by tasks.registering(Zip::class) {
+val archiveJNF by tasks.registering(Exec::class) {
     dependsOn(buildJNF)
-    archiveFileName.set("JavaNativeFoundation.framework.zip")
-    destinationDirectory.set(project.buildDir.resolve("frameworks"))
-    from("buildNative/Frameworks/JavaNativeFoundation.framework")
+    commandLine("sh", "archive_jnf.sh");
 }
 
 fun registerJNFConfiguration(architecture : String) = configurations.registering {
