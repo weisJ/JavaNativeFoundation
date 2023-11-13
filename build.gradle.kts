@@ -37,7 +37,7 @@ releaseParams {
 }
 
 val buildJNF by tasks.registering(Exec::class) {
-    commandLine("arch", "-x86_64", "/bin/bash", "build_jnf.sh")
+    commandLine("sh", "build_jnf.sh")
 }
 
 val archiveJNF by tasks.registering(Exec::class) {

@@ -2,7 +2,7 @@
 
 if [[ $(arch) == "arm64" ]] ; then
     echo "Re-execing build using Rosetta." >&2
-    exec arch -x86_64 ${0} "${@}"
+    exec arch -x86_64 /bin/sh ${0} "${@}"
 fi
 
 SDK_NAME=macosx
